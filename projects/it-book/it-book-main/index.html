@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css" />
+  <link rel="stylesheet" href="src/style.css" />
+  <title>IT Book Library</title>
+  <script src="dist/list.js" type="module" defer></script>
+</head>
+<body>
+<header class="header">
+  <div class="container">
+    <div class="row">
+      <div class="column"><p class="logo">IT.Book.Library</p></div>
+      <div class="column">
+        <nav class="mainnav">
+          <a href="index.html" class="mainnav-link mainnav-link--active">Books</a>
+          <a href="favorite.html" class="mainnav-link">
+            Favorites <span class="mainnav-number">0</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <h2>Loading books...</h2>
+
+  <section class="row filter-search">
+    <form action="#" class="column" onsubmit="return false;">
+      <label for="search">Search by Title</label>
+      <input type="text" id="search" placeholder="Type to search..." />
+    </form>
+
+    <form action="#" class="column column-33" onsubmit="return false;">
+      <label for="by-publisher">Filter by Publisher</label>
+      <select id="by-publisher">
+        <option value="-">-</option>
+      </select>
+    </form>
+  </section>
+
+  <section class="row">
+    <div class="column">
+      <table>
+        <thead>
+        <tr>
+          <th class="first-col">&nbsp;</th>
+          <th>Title</th>
+          <th>ISBN</th>
+          <th>Author</th>
+          <th>Publisher</th>
+          <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+</body>
+</html>

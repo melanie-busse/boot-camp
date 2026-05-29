@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+    />
+
+    <!-- CSS Reset -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+    />
+
+    <!-- Milligram CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+    <!-- You should properly set the path from the main file. -->
+    <title>Document</title>
+    <script src="dist/detail.js" type="module" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="row">
+          <div class="column"><p class="logo">IT.Book.Library</p></div>
+          <div class="column">
+            <nav class="mainnav">
+              <a href="index.html" class="mainnav-link mainnav-link--active"
+                >Books</a
+              >
+              <a href="favorite.html" class="mainnav-link"
+                >Favorites <span class="mainnav-number">2</span></a
+              >
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <h1 id="book-title">
+        Loading...<br />
+        <small></small>
+      </h1>
+
+      <section class="row">
+        <div class="column column-67">
+          <h3>Abstract</h3>
+          <p id="book-abstract"></p>
+
+          <h4>Details</h4>
+          <ul>
+            <li><strong>Author:</strong> <span id="book-author"></span></li>
+            <li><strong>Publisher:</strong> <span id="book-publisher"></span></li>
+            <li><strong>Pages:</strong> <span id="book-pages"></span></li>
+            <li><strong>ISBN:</strong> <span id="book-isbn"></span></li>
+          </ul>
+
+          <a class="button button-outline" href="index.html">Back</a>
+        </div>
+
+        <div class="column column-33">
+          <img id="book-cover" src="" alt="Book Cover" />
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

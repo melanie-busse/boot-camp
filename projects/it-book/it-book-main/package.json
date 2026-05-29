@@ -1,0 +1,18 @@
+{
+  "name": "it-book",
+  "version": "1.0.0",
+  "description": "IT-Bibliothek Foobar Town",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "serve": "lite-server",
+    "dev": "concurrently \"npm run watch\" \"npm run serve\""
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "lite-server": "^2.6.1",
+    "concurrently": "^8.2.0"
+  }
+}
