@@ -1,7 +1,7 @@
 # Bootcamp – Kursplan
 
-| Woche | Tag | Datum | Thema |
-|---|---|---|---|
+| Woche | Tag | Datum      | Thema |
+|---|---|------------|---|
 | **Woche 1** | Mo | 13.04.2026 | Welcome / Learning Components |
 | | Di | 14.04.2026 | Careers Intro / Tech Industry Overview |
 | | Mi | 15.04.2026 | Intro to AI / Bootcamp Manifesto |
@@ -28,8 +28,8 @@
 | | Di | 19.05.2026 | NestJS |
 | | Mi | 20.05.2026 | Career / Self-Learning |
 | | Do | 21.05.2026 | NestJS Databases |
-| | Fr | 22.05.2026 | NestJS Restful |
-| **Woche 7** | Di | 26.05.2026 | NestJS Authentication |
+| | Fr | 28.05.2026 | NestJS Restful |
+| **Woche 7** | Di | 29.05.2026 | NestJS Authentication |
 | | Mi | 27.05.2026 | Career / Self-Learning |
 | | Do | 28.05.2026 | Swagger OpenAPI |
 | | Fr | 29.05.2026 | NestJS Testing |
