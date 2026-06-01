@@ -1,0 +1,123 @@
+# Backend Template Engines – Aufgaben
+
+## Code Along: Event Hub
+
+Baue eine kleine Event-Listing-Seite namens Event Hub. Jeder Schritt baut auf dem vorherigen auf – arbeite sie der Reihe nach durch.
+
+### Setup
+
+Erstelle ein neues Express + TypeScript-Projekt und installiere die benötigten Pakete:
+
+```bash
+npm install express nunjucks
+npm install --save-dev typescript @types/express @types/nunjucks tsx
+npm install --save-dev prettier prettier-plugin-jinja-template
+```
+
+Konfiguriere Nunjucks in `index.ts` wie im Nunjucks-Setup-Handout beschrieben. Füge eine `.prettierrc`-Datei mit dem Jinja-Template-Plugin hinzu und installiere die Better Nunjucks-Extension in VS Code.
+
+### Basis-Layout
+
+Erstelle `views/base.html` mit einem `title`-Block und einem `content`-Block. Das Basis-Template soll einen Header mit dem Site-Namen „Event Hub", eine Navigation mit Links zu Home und Events sowie einen Footer enthalten.
+
+Erstelle `views/index.html`, das das Basis-Template erweitert und den `content`-Block mit einer Überschrift befüllt: „Welcome to Event Hub".
+
+Füge eine `GET /`-Route hinzu, die `index.html` rendert.
+
+### Event-Liste
+
+Füge die folgenden Events in deinen Server ein und übergib sie an das Template:
+
+```javascript
+const events = [
+  {
+    name: "React Conf",
+    date: "June 10, 2025",
+    location: "Berlin",
+    soldOut: false,
+  },
+  {
+    name: "Vue.js Summit",
+    date: "July 2, 2025",
+    location: "Amsterdam",
+    soldOut: true,
+  },
+  {
+    name: "Node.js Interactive",
+    date: "August 15, 2025",
+    location: "London",
+    soldOut: false,
+  },
+];
+```
+
+Erstelle `views/events.html`, das das Basis-Template erweitert. Rendere für jedes Event Name, Datum und Ort in einer Liste. Füge eine `{% else %}`-Klausel zur `for`-Schleife hinzu, die „Keine Events geplant" anzeigt, wenn das Array leer ist.
+
+Füge eine `GET /events`-Route hinzu, die `events.html` mit den Event-Daten rendert.
+
+### „Ausverkauft"-Badge
+
+Füge jeder Event-Karte ein Badge hinzu, das nur gerendert wird, wenn `soldOut` `true` ist. Überprüfe die Funktion, indem du den `soldOut`-Wert bei einem der Events umschaltest.
+
+### Event-Card-Macro
+
+Extrahiere das Event-Karten-HTML in ein Macro namens `eventCard`, das `name`, `date`, `location` und einen optionalen Parameter `soldOut` (Standardwert `false`) entgegennimmt. Verschiebe das Macro in `views/macros/events.html` und importiere es in `events.html`.
+
+---
+
+## Blog bauen
+
+Richte eine Express-Anwendung mit TypeScript und Nunjucks ein. Verwende das Clean Blog-Theme von Start Bootstrap als visuelles Template und lade es von der Theme-Seite herunter.
+
+Die Blog-Inhalte sind als JSON unten bereitgestellt. Speichere sie in einer Datei und lese sie beim Start der Anwendung ein.
+
+> **Hinweis:** Lade die Bilder herunter, bevor du anfängst.
+
+### Startseite
+
+Liste alle Beiträge auf der Startseite mit dem `index`-Layout auf. Jeder Eintrag zeigt Titel, Teaser, Autor und Datum. Das Feld `createdAt` ist ein Unix-Timestamp – konvertiere ihn in einen lesbaren Datumsstring, bevor du ihn an das Template übergibst. Verändere die JSON-Struktur nicht.
+
+### Beitrags-Detailseite
+
+Rendere jeden Beitrag auf einer eigenen Seite mit dem `post`-Layout. Die URL soll einen aus dem Beitragstitel abgeleiteten Slug enthalten, sodass jeder Beitrag einen eindeutigen, lesbaren Pfad hat. Zeige den vollständigen Inhalt und das Beitragsbild an.
+
+### Kontaktseite
+
+Implementiere die Kontaktseite. Das Formular muss keine Eingaben verarbeiten – reines HTML genügt. Verwende ein Macro für die Formularfelder, um wiederholtes Input-Markup zu vermeiden. Das Macro soll die Parameter `label`, `placeholder` und `type` entgegennehmen. Wenn `type` den Wert `"textarea"` hat, soll ein `<textarea>`-Element gerendert werden statt eines `<input>`-Elements.
+
+### Blog-Daten
+
+```json
+[
+  {
+    "title": "Black: The Absence, Not the Presence, of Color",
+    "image": "colorful-umbrella.jpg",
+    "author": "Peter Parker",
+    "createdAt": 1743120000,
+    "teaser": "Scientifically, black is not a color but rather the absence of all colors, occurring when an object absorbs nearly all light wavelengths instead of reflecting them.",
+    "content": "<p>When you think about the rainbow, you see a vibrant spectrum of hues: red, orange, yellow, green, blue, indigo, violet. But where's black? And why isn't it typically included in our discussions of light and color in the same way as, say, blue or green?</p><p>The simple answer, from a scientific perspective, is that black is the absence of color.</p><p>Think about how we perceive color. Objects have color because they reflect certain wavelengths of light and absorb others. A red apple, for example, appears red because it reflects red light and absorbs most of the other colors in the visible spectrum. White, on the other hand, is what we see when an object reflects all wavelengths of light.</p><p>Black is the opposite. When an object appears black, it's because it's absorbing nearly all of the wavelengths of light that hit it. Very little, if any, light is being reflected back to our eyes. Without reflected light, there's no color for our eyes to perceive.</p><p>This concept becomes even clearer when we talk about light itself. A prism splits white light into its constituent colors. But you can't split black light into colors, because there is no black light in the same way there is white light. In a dark room, where there is no light, everything appears black.</p><p>Of course, in the world of art and pigments, we often talk about &quot;black paint&quot; and mix colors to create black. In this context, black is indeed a pigment. However, even then, black pigments work by absorbing most of the light that hits them, effectively removing color from what we see.</p><p>So, while black is undeniably powerful, chic, and fundamental in both our everyday lives and artistic expression, scientifically speaking, it's not a color in the same way red or blue are. It's the ultimate absorber, the beautiful void that makes other colors pop, and the profound absence that allows light to define everything else.</p>"
+  },
+  {
+    "title": "Flowers: Nature's Muse for Design",
+    "image": "flowers.jpg",
+    "author": "Peter Parker",
+    "createdAt": 1745452800,
+    "teaser": "Flowers endlessly inspire diverse design fields, from fashion to architecture, with their colors, patterns, forms, and functional structures, reminding us that nature is the ultimate muse for creativity.",
+    "content": "<p>Flowers, with their riot of colors, intricate patterns, and graceful forms, are more than just botanical beauties; they are an endless wellspring of inspiration for designers across various fields. From fashion to architecture, and graphic design to interior decor, the influence of flora is evident everywhere.</p><p>Think about the delicate pleats of a rose petal inspiring the draping of a gown, or the vibrant color combinations of a tropical bloom dictating a bold new palette for a living room. The organic lines of a winding vine can inform the flow of a logo, while the symmetrical perfection of a sunflower's seeds might spark ideas for a repeating pattern.</p><p>Beyond just aesthetics, flowers also offer lessons in functionality and adaptability. Their structures are often optimized for survival and reproduction, showcasing ingenious engineering that can inspire biomimicry in design&mdash;creating solutions by emulating nature's designs and processes.</p><p>The ephemeral nature of flowers, their bloom and fade, can even influence design philosophies, encouraging the creation of pieces that celebrate transient beauty or evoke a sense of fleeting moments.</p><p>Ultimately, flowers remind us that the most profound and beautiful designs often come from the natural world. They encourage us to observe, appreciate, and translate their inherent artistry into our own creative endeavors, ensuring that their timeless charm continues to blossom in countless forms of human design.</p>"
+  },
+  {
+    "title": "UDesign's Harmony: Core Purpose and Supporting Details",
+    "image": "sailing.jpg",
+    "author": "Peter Parker",
+    "createdAt": 1748736000,
+    "teaser": "Discover how distinguishing between the major core and minor supporting details in design creates a harmonious and impactful final product.",
+    "content": "<p>In the world of design, you'll often hear about &quot;major&quot; and &quot;minor.&quot; These aren't just academic terms; they're a simple way to understand what's most important in a design and what helps it truly shine.</p><p>The major focus in design is the absolute core. It's the central problem you're solving, the main message you're conveying, or the primary function a product needs to perform. If you're creating a new brand identity, the major is designing that iconic logo that will represent the entire company. For a website, the major might be ensuring users can easily achieve their main goal, like buying a product or finding information. This is where the bulk of the creative energy and strategic thinking resides. It's the reason the design project exists.</p><p>Then there are the minor elements. These are all the crucial details that support, enhance, and complement the major focus. They're essential for a complete and polished design, but they don't carry the primary weight of the project's overall purpose. Continuing our examples, for that new brand identity, the minor elements would include the specific typography chosen for marketing materials, the subtle color palette used across different applications, or the style of accompanying imagery. For the website, the minor considerations could be the precise spacing between elements, the micro-interactions when a user hovers over a button, or the tone of voice in the help text. These details refine the user experience and contribute to the overall aesthetic without being the central function themselves.</p><p>The true art of design lies in the harmonious interplay between the major and minor. A brilliant core idea needs well-executed supporting details to be fully realized and impactful. Conversely, even the most exquisite minor flourishes can't rescue a design if its major purpose isn't clear or effective. Understanding this distinction allows designers to prioritize their efforts, ensuring that every element serves its intended role in creating a cohesive and successful outcome. It's about finding that perfect balance where every piece contributes to the overall symphony of the design.</p>"
+  }
+]
+```
+
+### Bilder
+
+- `colorful-umbrella.jpg`
+- `flowers.jpg`
+- `sailing.jpg`
