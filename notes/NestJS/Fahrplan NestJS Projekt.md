@@ -22,6 +22,7 @@ Nutze am besten die NestJS CLI im Terminal. Sie nimmt dir das manuelle Anlegen v
 
 ```bash
 nest new cyber-chat
+npm install @nestjs/typeorm typeorm better-sqlite3
 ```
 
 ### Die beiden Module generieren
