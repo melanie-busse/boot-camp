@@ -1,0 +1,11 @@
+# Express Middleware – Überblick
+
+Express-Anwendungen müssen bestimmte Aufgaben oft für jede eingehende Anfrage erledigen – nicht nur innerhalb einer einzelnen Route. Aufgaben wie Logging, Authentifizierungsprüfung, Daten-Parsing oder Fehlerbehandlung finden alle rund um den Request-Response-Zyklus statt. Express-Middleware bietet eine strukturierte Möglichkeit, diese gemeinsame Logik in den Ablauf einzubinden, sodass sie zentral ausgeführt wird, statt über viele Route-Handler verteilt zu sein.
+
+Ein Beispiel für einen typischen Middleware-Anwendungsfall: Sobald ein Server echten Traffic verarbeitet, taucht schnell eine Frage auf – was macht die App eigentlich gerade? Wenn eine Route den falschen Status-Code zurückgibt, eine Seite nicht lädt oder ein Nutzer meldet „es funktioniert nicht", braucht man eine Aufzeichnung der Anfragen, die den Server erreicht haben. Diese Aufzeichnung ist ein Access-Log.
+
+Diese Session nutzt einen Logger, um mehrere Backend-Grundlagen zu verknüpfen, die Entwickler früh benötigen: Express-Middleware, Request-Objekte, Dateisystem-Operationen, asynchronen Code, Umgebungsvariablen und Debugging. Das Ziel ist nicht bloß „in eine Datei schreiben". Das Ziel ist zu verstehen, warum Logging an einem zentralen Punkt im Request-Ablauf stattfindet, welche Informationen in einen Log-Eintrag gehören und wie diese Einträge gespeichert werden, ohne fragile hartcodierte Pfade zu verwenden.
+
+Die Session beginnt mit Middleware, weil Logging ein sogenanntes Cross-Cutting Concern ist: Dieselbe Logging-Logik soll nicht in jedem Route-Handler wiederholt werden. Danach behandelt das Material die Log-Dateiverwaltung: Datei erstellen, prüfen ob sie bereits existiert, neue Zeilen anhängen und Pfade so aufbauen, dass sie auch nach dem Kompilieren zu JavaScript noch funktionieren.
+
+Die letzten beiden Themen unterstützen denselben Workflow. Umgebungsvariablen halten Werte wie den Server-Port außerhalb des Quellcodes, und Debugging-Tools helfen dabei, Request-Daten zu inspizieren und Fehler nachzuverfolgen, während der Logger gebaut und die Aufgabe angegangen wird.
