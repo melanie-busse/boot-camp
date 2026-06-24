@@ -1,0 +1,20 @@
+# Überblick
+
+Als Facebook React 2013 erstmals als Open Source veröffentlichte, war noch nicht viel dabei. Es gab keinen Router, kein eingebautes Data Fetching, keine Formularverarbeitung und definitiv keine eingebaute Möglichkeit, State in der App zu teilen, außer Props manuell den Baum hinunterzureichen. React war strikt eine View-Schicht: Es verwandelte deinen State in eine UI, renderte neu, wenn sich dieser State änderte, und hörte dort auf. Alles andere lag in der Verantwortung des Entwicklers.
+
+Das war genau das Gegenteil von Angulars Philosophie, die dem „Batteries included“-Ansatz folgt und darauf abzielt, alles direkt mitzuliefern. Reacts minimalistische Strategie war eine riesige Wette darauf, dass die Community bessere Tools für diese fehlenden Teile bauen könnte, als es ein einzelnes Core-Team je könnte.
+
+Diese Wette hat sich vollständig ausgezahlt, denn wir stehen heute einem riesigen React-Ökosystem gegenüber, aber sie brachte auch neue Herausforderungen mit sich. Bereits 2015 prägte der Entwickler Eric Clemmons den Begriff „JavaScript Fatigue“. Plötzlich konnte man nicht einfach nur eine App bauen, sondern musste erst einen Router, einen Bundler, einen State-Manager und zehn weitere Pakete zusammenkleben, bevor man überhaupt die erste echte Komponente schrieb. Aber so überwältigend sich dieses initiale Setup auch anfühlen kann, es bringt einen entscheidenden Vorteil mit sich. Im heutigen React-Ökosystem zu arbeiten bedeutet weniger, ein einziges starres Framework auswendig zu lernen, sondern vielmehr zu wissen, wie man das richtige, von der Community etablierte Tool für das jeweils vorliegende Problem auswählt.
+
+Zwei der häufigsten Probleme, denen du in fast jeder Frontend-Anwendung begegnest, sind die Handhabung von Formularen und das Verwalten von globalem State.
+
+Nehmen wir Formulare. Wenn du sie auf dem üblichen React-Weg verdrahtest, indem du jedes Input-Feld an `useState` bindest, rendert die Komponente bei jedem einzelnen Tastendruck neu. Fügst du noch ein paar weitere Felder und eine feldübergreifende Validierung hinzu, wird daraus schnell ein Haufen repetitiver Verdrahtung. `react-hook-form` umgeht das, indem es schlicht Reacts übliche Regeln für Controlled Inputs ignoriert. Statt auf State zu setzen, verfolgt es Eingaben über Refs. Das bedeutet, dass die Komponente während des Tippens des Nutzers völlig still bleibt und nur dann neu rendert, wenn die Validierung greift oder das Formular abgeschickt wird.
+
+Dann gibt es noch globalen State. Jahrelang war die Standardantwort darauf Redux. Redux ist für riesige Anwendungen unglaublich leistungsfähig, erfordert aber so viel Boilerplate, dass sogar sein Mitbegründer einen Artikel mit dem Titel „You Might Not Need Redux“ schrieb. Glücklicherweise sind seither leichtere Alternativen aufgetaucht. Zustand (das deutsche Wort für „state“) ist eine unserer Favoriten. Entwickelt vom selben Team hinter React Three Fiber, verzichtet es komplett auf die Context-Provider, die jene massiven Re-Render-Ketten verursachen. Stattdessen abonnieren Komponenten einfach genau den Ausschnitt des States, den sie tatsächlich benötigen.
+
+In diesem Abschnitt verwenden wir beide Tools, um ein durchgängiges Beispiel zu bauen: ein Formular für ein Warenkorb-Element. `react-hook-form` sammelt und validiert, was der Nutzer eingibt, während Zustand die abgeschickten Daten übernimmt und dem Rest der App zur Verfügung stellt. Das eigentliche Ziel hierbei ist nicht nur, zwei bestimmte Bibliotheken zu lernen. Es geht darum, ein Gefühl dafür zu entwickeln, wie man die nächste Lücke in seiner Architektur erkennt und selbstbewusst das richtige Tool auswählt, um sie zu füllen.
+
+## Ressourcen
+
+* [Javascript Fatigue, Eric Clemmons (2015)](https://ericclemmons.com/blog/javascript-fatigue)
+* [You Might Not Need Redux, Dan Abramov](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367)

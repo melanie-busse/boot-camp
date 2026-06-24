@@ -1,0 +1,13 @@
+# Recap-Projekt 4 – NextBay
+
+Willkommen bei NextBay, dem Storefront für den DarkBay-Marketplace. Im Recap-Projekt 3 hast du DarkBay als headless API gebaut. Jetzt bekommt die API ein Gesicht. NextBay ist eine Next.js-Anwendung, mit der Nutzer Angebote durchstöbern, einen Bietkrieg verfolgen, sich einloggen und eigene Gebote direkt aus dem Browser abgeben können.
+
+Du kannst NextBay mit deinem eigenen DarkBay-Backend verbinden oder den bereitgestellten Starter nutzen. Der Starter ist die fertige Version von DarkBay ohne die Bonus-Features – jeder Endpunkt, den du brauchst, existiert also bereits. Deine Aufgabe ist das Frontend und die Schicht, die mit dem Backend kommuniziert.
+
+NextBay hält eine klare Aufgabenteilung ein. DarkBay bleibt die alleinige Quelle der Wahrheit für Daten und Geschäftsregeln; ein Gebot wird weiterhin serverseitig abgelehnt, wenn es den aktuellen Preis nicht übertrifft. NextBay liest von dieser API und schreibt in sie. Der Trick liegt darin, wo diese Aufrufe stattfinden. Statt aus jeder Komponente im Browser zu fetchen, leitest du die gesamte Backend-Kommunikation durch eine dünne Service-Schicht, die auf dem Next.js-Server läuft. Deine Server-Components rufen diese Schicht direkt auf und rendern fertiges HTML. Der Browser bekommt eine Seite, keinen Wasserfall aus Lade-Spinnern.
+
+Die Authentifizierung folgt demselben serverseitigen Instinkt. Wenn sich ein Nutzer einloggt, tauscht ein Route Handler seine Zugangsdaten gegen ein JWT von DarkBay ein und speichert dieses Token in einem httpOnly-Cookie. Browser-JavaScript kann es niemals lesen. Bei jeder geschützten Anfrage holt deine Service-Schicht das Token aus dem Cookie und hängt es als `Authorization`-Header an. Das Durchstöbern von Auktionen bleibt öffentlich; das Erstellen einer Auktion oder das Abgeben eines Gebots erfordert dieses Cookie.
+
+Das Erscheinungsbild kommt von Tailwind CSS für das Layout und shadcn/ui für vorgefertigte Komponenten wie Buttons, Cards und Formularfelder. Wo du Formular-Handling oder geteilten State brauchst, kannst du zu react-hook-form und zustand greifen – beides ist aber nicht zwingend erforderlich. Wenn die App lokal funktioniert, deployst du sie auf Vercel und verbindest sie mit deinem auf Render laufenden DarkBay-Backend.
+
+**Denkanstoß:** Warum ist es wichtig, dass die gesamte Backend-Kommunikation über eine zentrale Service-Schicht auf dem Server läuft, statt direkt aus den Komponenten im Browser zu fetchen? Welche Vorteile ergeben sich daraus für Sicherheit, Performance und Wartbarkeit?
