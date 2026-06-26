@@ -1,0 +1,11 @@
+Das Web wurde ursprünglich für den Abruf von Dokumenten konzipiert. Ein Client fragt eine Datei an, der Server liefert sie zurück, und die Verbindung wird beendet. Diese stateless, pull-basierte Architektur ist das Fundament von REST. Sie skaliert effizient, weil Server sich keine Erinnerung an vorherige Interaktionen merken müssen; jeder Request enthält den gesamten Kontext, der für die Verarbeitung benötigt wird.
+
+Diese Architektur stößt an ihre Grenzen, sobald eine Anwendung event-driven wird. Wenn ein Background Worker das Rendern eines Videos abschließt, eine Zahlung bestätigt wird oder ein Nutzer eine Direktnachricht erhält, ist der Server die Source of Truth für den neuen State. Da Standard-HTTP strikt pull-basiert ist, hat der Server keinen Mechanismus, um selbst Kontakt aufzunehmen und diese Daten zu pushen. Er muss in Stille warten, bis der Client entscheidet, erneut nachzufragen.
+
+Eine Lösung für diese Einschränkung zu entwickeln bedeutet, ein grundsätzlich stateless, client-gesteuertes Protokoll dazu zu zwingen, sich reaktiv zu verhalten. Wenn der Server nicht von sich aus „anrufen" kann, müssen Client und Server zusammenarbeiten, um entweder einen Push-Mechanismus zu simulieren oder die Lifecycles von Requests so zu manipulieren, dass eine Kommunikationsleitung offen bleibt.
+
+Dieses Modul untersucht drei aufeinander aufbauende architektonische Patterns, um diese Lücke zu schließen. Wir starten mit der unmittelbarsten Anpassung von Standard-HTTP, analysieren ihre erheblichen Kosten bei Scaling und Latenz und optimieren den Ansatz schrittweise. Abschließend implementieren wir einen persistenten, unidirektionalen Datenstream, um kontinuierliche Server-Updates nativ zu verarbeiten. Die Analyse dieser Schritte gibt dir das Framework, um Latenz, Server-Overhead und Implementierungskomplexität beim Design von Real-time-Features zu bewerten.
+
+## Denkanstoß
+
+Stell dir vor, du müsstest dich zwischen zwei Ansätzen entscheiden: dem Client wiederholt in kurzen Abständen Anfragen stellen lassen, oder eine einzelne, lang offen gehaltene Verbindung zum Server aufbauen. Welche Kompromisse siehst du jeweils bei Latenz, Server-Last und Implementierungsaufwand, und unter welchen Umständen würdest du dich für den einen oder anderen Ansatz entscheiden?
